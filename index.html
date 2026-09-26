@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Diamond Top-Up Shop</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Segoe UI,Tahoma,sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:450px;
+    background:#1e293b;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+
+h2{
+    text-align:center;
+    color:#38bdf8;
+    margin-bottom:22px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    color:#cbd5e1;
+    font-size:14px;
+    margin-bottom:7px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    border:1px solid #475569;
+    border-radius:8px;
+    background:#0f172a;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#38bdf8;
+}
+
+/* Diamond Packages */
+
+.pack-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.pack-card{
+    background:#334155;
+    padding:17px 10px;
+    border-radius:10px;
+    text-align:center;
+    cursor:pointer;
+    border:2px solid transparent;
+    transition:.2s;
+}
+
+.pack-card:hover{
+    transform:translateY(-2px);
+}
+
+.pack-card.active{
+    background:#0284c7;
+    border-color:#38bdf8;
+}
+
+.pack-card h3{
+    margin-bottom:5px;
+}
+
+.pack-card p{
+    color:#e2e8f0;
+}
+
+/* bKash */
+
+.bkash-box{
+    background:#e2136e;
+    padding:18px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.bkash-box h3{
+    margin-bottom:7px;
+}
+
+.bkash-number{
+    font-size:23px;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin:8px 0;
+}
+
+.copy-btn{
+    background:white;
+    color:#e2136e;
+    border:0;
+    padding:9px 16px;
+    border-radius:6px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+.note{
+    background:#0f172a;
+    padding:12px;
+    margin-top:10px;
+    border-radius:8px;
+    color:#cbd5e1;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* Order Button */
+
+.btn-submit{
+    width:100%;
+    padding:15px;
+    margin-top:8px;
+    background:#10b981;
+    color:white;
+    border:0;
+    border-radius:8px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn-submit:hover{
+    background:#059669;
+}
+
+.footer{
+    text-align:center;
+    color:#64748b;
+    font-size:12px;
+    margin-top:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>💎 ফ্রি ফায়ার টপ-আপ</h2>
+
+    <!-- Player UID -->
+
+    <div class="form-group">
+
+        <label for="player-id">
+            🆔 প্লেয়ার আইডি (Player UID)
+        </label>
+
+        <input
+            type="text"
+            id="player-id"
+            placeholder="আপনার Player UID লিখুন"
+        >
+
+    </div>
+
+
+    <!-- Diamond Packages -->
+
+    <div class="form-group">
+
+        <label>
+            💎 প্যাকেজ নির্বাচন করুন
+        </label>
+
+        <div class="pack-grid">
+
+            <div
+                class="pack-card"
+                onclick="selectPack(this,'115 Diamond','80 BDT')"
+            >
+                <h3>115 💎</h3>
+                <p>৳ ৮০</p>
+            </div>
+
+            <div
+                class="pack-card"
+                onclick="selectPack(this,'240 Diamond','160 BDT')"
+            >
+                <h3>240 💎</h3>
+                <p>৳ ১৬০</p>
+            </div>
+
+            <div
+                class="pack-card"
+                onclick="selectPack(this,'610 Diamond','400 BDT')"
+            >
+                <h3>610 💎</h3>
+                <p>৳ ৪০০</p>
+            </div>
+
+            <div
+                class="pack-card"
+                onclick="selectPack(this,'1240 Diamond','800 BDT')"
+            >
+                <h3>1240 💎</h3>
+                <p>৳ ৮০০</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- bKash Payment -->
+
+    <div class="form-group">
+
+        <label>📱 bKash Send Money</label>
+
+        <div class="bkash-box">
+
+            <h3>💗 bKash</h3>
+
+            <div class="bkash-number">
+                01962575788
+            </div>
+
+            <p>
+                এই নম্বরে Send Money করুন
+            </p>
+
+            <button
+                class="copy-btn"
+                onclick="copyNumber()"
+            >
+                📋 নম্বর কপি করুন
+            </button>
+
+        </div>
+
+
+        <div class="note">
+
+            <b>পেমেন্ট করার নিয়ম:</b><br>
+
+            ১. উপরের bKash নম্বরে Send Money করুন।<br>
+
+            ২. আপনার নির্বাচিত প্যাকেজের টাকা পাঠান।<br>
+
+            ৩. Payment করার পর Transaction ID দিন।<br>
+
+            ৪. তারপর অর্ডার বাটনে ক্লিক করুন।
+
+        </div>
+
+    </div>
+
+
+    <!-- Transaction ID -->
+
+    <div class="form-group">
+
+        <label for="transaction-id">
+            🧾 bKash Transaction ID
+        </label>
+
+        <input
+            type="text"
+            id="transaction-id"
+            placeholder="Transaction ID লিখুন"
+        >
+
+    </div>
+
+
+    <!-- Order Button -->
+
+    <button
+        class="btn-submit"
+        onclick="processOrder()"
+    >
+        📲 অর্ডার করুন
+    </button>
+
+
+    <div class="footer">
+        💎 Fast & Secure Diamond Top-Up
+    </div>
+
+</div>
+
+
+<script>
+
+let selectedPackage = null;
+
+
+/* Select Package */
+
+function selectPack(element, packName, price){
+
+    let cards =
+        document.querySelectorAll(".pack-card");
+
+    cards.forEach(function(card){
+        card.classList.remove("active");
+    });
+
+    element.classList.add("active");
+
+    selectedPackage = {
+        name:packName,
+        price:price
+    };
+
+}
+
+
+/* Copy bKash Number */
+
+function copyNumber(){
+
+    navigator.clipboard.writeText("01962575788");
+
+    alert(
+        "bKash নম্বর কপি হয়েছে!\n01962575788"
+    );
+
+}
+
+
+/* Process Order */
+
+function processOrder(){
+
+    let uid =
+        document.getElementById("player-id")
+        .value.trim();
+
+    let transactionId =
+        document.getElementById("transaction-id")
+        .value.trim();
+
+
+    if(!uid){
+
+        alert(
+            "অনুগ্রহ করে আপনার Player UID লিখুন!"
+        );
+
+        return;
+    }
+
+
+    if(!selectedPackage){
+
+        alert(
+            "অনুগ্রহ করে একটি Diamond Package নির্বাচন করুন!"
+        );
+
+        return;
+    }
+
+
+    if(!transactionId){
+
+        alert(
+            "অনুগ্রহ করে bKash Transaction ID লিখুন!"
+        );
+
+        return;
+    }
+
+
+    /*
+      এখানে আপনার WhatsApp নম্বর দিন।
+      উদাহরণ:
+      let whatsapp = "8801XXXXXXXXX";
+    */
+
+    let whatsapp = "8801962575788";
+
+
+    let message =
+`💎 নতুন Diamond Top-Up Order
+
+🆔 Player UID:
+${uid}
+
+💎 Package:
+${selectedPackage.name}
+
+💰 Price:
+${selectedPackage.price}
+
+🧾 Transaction ID:
+${transactionId}
+
+📱 Payment Method:
+bKash Send Money
+
+💳 bKash Number:
+01962575788`;
+
+
+    let whatsappURL =
+        "https://wa.me/" +
+        whatsapp +
+        "?text=" +
+        encodeURIComponent(message);
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+}
+
+</script>
+
+</body>
+</html>
