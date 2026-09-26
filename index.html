@@ -1,801 +1,1758 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8"><meta name="google-site-verification" content="DeQbMGaCwoCc5qB2ceo0FZr6n1Ue3MwG8_CM3PDLMd8" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RED TOPUP</title>
+<title>RED E-TOPUP | Diamond Top-Up</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial, sans-serif;
+    box-sizing:border-box;
+}
+
+:root{
+    --blue:#20c9ff;
+    --purple:#7b4dff;
+    --cyan:#00e5ff;
+    --bg:#03050b;
+    --card:#080d1b;
+    --border:#173a67;
+    --text:#f5f8ff;
+    --muted:#8290aa;
 }
 
 body{
-    background:
-        radial-gradient(circle at top,#3b0000 0,#090909 45%,#050505 100%);
-    color:#fff;
+    font-family:'Inter',Arial,sans-serif;
+    color:var(--text);
     min-height:100vh;
-    padding:15px;
-}
-
-.container{
-    max-width:480px;
-    margin:auto;
-    background:#111;
-    border:1px solid #2d2d2d;
-    border-radius:22px;
-    overflow:hidden;
-    box-shadow:
-        0 0 25px rgba(255,0,0,.15),
-        0 15px 50px rgba(0,0,0,.7);
-}
-
-/* HEADER */
-
-.header{
-    padding:30px 15px;
-    text-align:center;
     background:
-        linear-gradient(135deg,#ff1717,#a00000 55%,#570000);
+        radial-gradient(circle at 10% 5%,rgba(0,140,255,.22),transparent 25%),
+        radial-gradient(circle at 90% 20%,rgba(121,50,255,.20),transparent 27%),
+        radial-gradient(circle at 50% 100%,rgba(0,225,255,.10),transparent 30%),
+        #03050b;
+    overflow-x:hidden;
 }
 
-.header h1{
-    font-size:34px;
-    font-weight:900;
-    letter-spacing:3px;
-    text-shadow:0 3px 10px #000;
+/* ===== BACKGROUND EFFECT ===== */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.25;
+    background-image:
+        linear-gradient(rgba(40,130,255,.08) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(40,130,255,.08) 1px,transparent 1px);
+    background-size:55px 55px;
+    mask-image:linear-gradient(to bottom,#000,transparent 90%);
 }
 
-.header p{
-    margin-top:7px;
-    color:#ffe1e1;
-    font-size:14px;
+/* ===== HEADER ===== */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    padding:15px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(3,6,13,.82);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(46,151,255,.15);
 }
 
-/* CONTENT */
-
-.content{
-    padding:20px;
-}
-
-.title{
-    color:#ff4242;
-    font-size:18px;
-    font-weight:bold;
-    margin-bottom:12px;
-}
-
-/* CATEGORY */
-
-.category-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.category{
-    background:linear-gradient(145deg,#242424,#151515);
-    border:1px solid #333;
-    border-radius:14px;
-    padding:17px 8px;
-    text-align:center;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.category:hover{
-    transform:translateY(-3px);
-    border-color:#ff2222;
-}
-
-.category.active{
-    background:
-        linear-gradient(145deg,#d90000,#730000);
-    border-color:#ff4b4b;
-    box-shadow:0 5px 15px rgba(255,0,0,.25);
-}
-
-.category .icon{
-    font-size:25px;
-    margin-bottom:6px;
-}
-
-/* PRODUCTS */
-
-.products{
-    margin-top:23px;
-}
-
-.product{
-    background:linear-gradient(145deg,#202020,#151515);
-    border:2px solid #303030;
-    border-radius:13px;
-    padding:17px;
-    margin-bottom:10px;
+.logo{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    cursor:pointer;
-    transition:.2s;
+    gap:10px;
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:.5px;
 }
 
-.product:hover{
-    transform:translateX(3px);
-    border-color:#ff2929;
+.logo-icon{
+    width:39px;
+    height:39px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#147cff,#793fff);
+    box-shadow:
+        0 0 20px rgba(42,130,255,.35);
 }
 
-.product.active{
-    background:linear-gradient(145deg,#500000,#260000);
-    border-color:#ff2222;
-    box-shadow:0 0 15px rgba(255,0,0,.15);
+.logo span{
+    background:linear-gradient(90deg,#fff,#42d8ff,#8c6cff);
+    -webkit-background-clip:text;
+    color:transparent;
 }
 
-.product h3{
-    font-size:16px;
+.online{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    padding:7px 12px;
+    border-radius:30px;
+
+    color:#7affbd;
+    font-size:10px;
+    font-weight:800;
+
+    border:1px solid rgba(70,255,157,.25);
+    background:rgba(70,255,157,.06);
 }
 
-.price{
-    color:#ff4141;
+.online-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#20e889;
+    box-shadow:0 0 10px #20e889;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+    width:92%;
+    max-width:1120px;
+    min-height:300px;
+
+    margin:25px auto 20px;
+
+    position:relative;
+    overflow:hidden;
+
+    border:1px solid rgba(52,166,255,.3);
+    border-radius:30px;
+
+    background:
+        radial-gradient(circle at 75% 50%,rgba(0,187,255,.18),transparent 22%),
+        radial-gradient(circle at 88% 80%,rgba(133,57,255,.24),transparent 30%),
+        linear-gradient(120deg,#06142c,#08091a 60%,#100c2b);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.45),
+        inset 0 1px rgba(255,255,255,.07);
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    right:-120px;
+    top:-130px;
+    border-radius:50%;
+    background:#008cff;
+    filter:blur(100px);
+    opacity:.17;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    left:-100px;
+    bottom:-130px;
+    border-radius:50%;
+    background:#784cff;
+    filter:blur(100px);
+    opacity:.18;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    padding:42px 40px;
+    max-width:650px;
+}
+
+.hero-small{
+    font-size:11px;
+    letter-spacing:7px;
+    font-weight:800;
+    color:#51d6ff;
+}
+
+.hero h1{
+    margin-top:12px;
+    font-size:clamp(36px,7vw,65px);
+    line-height:.95;
+    font-weight:900;
+    letter-spacing:-3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #52d7ff 45%,
+            #9870ff
+        );
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    margin-top:15px;
+    color:#9aa8bf;
+    font-size:13px;
+}
+
+.hero-badges{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:22px;
+}
+
+.hero-badge{
+    padding:8px 12px;
+    border-radius:30px;
+    font-size:10px;
+    font-weight:700;
+    background:rgba(5,15,31,.72);
+    border:1px solid rgba(68,158,255,.2);
+}
+
+.hero-diamond{
+    position:absolute;
+    right:9%;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:120px;
+    filter:
+        drop-shadow(0 0 20px rgba(0,210,255,.8))
+        drop-shadow(0 0 60px rgba(75,83,255,.4));
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(-50%)}
+    50%{transform:translateY(calc(-50% - 12px))}
+}
+
+/* ===== CONTAINER ===== */
+
+.container{
+    width:92%;
+    max-width:1120px;
+    margin:auto;
+}
+
+/* ===== SECTION ===== */
+
+.section{
+    margin-top:16px;
+    padding:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(9,17,32,.94),
+            rgba(4,8,17,.96)
+        );
+
+    border:1px solid rgba(37,123,215,.26);
+    border-radius:22px;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.25),
+        inset 0 1px rgba(255,255,255,.03);
+}
+
+.section-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.step{
+    width:38px;
+    height:38px;
+    border-radius:12px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:12px;
+    font-weight:900;
+
+    background:
+        linear-gradient(135deg,#168eff,#754eff);
+
+    box-shadow:
+        0 0 22px rgba(42,132,255,.22);
+}
+
+.section-title{
+    font-size:17px;
+    font-weight:800;
+}
+
+.section-sub{
+    margin-left:auto;
+    color:#61718c;
+    font-size:10px;
+}
+
+/* ===== UID ===== */
+
+.input-wrap{
+    position:relative;
+}
+
+.input-icon{
+    position:absolute;
+    left:16px;
+    top:15px;
     font-size:18px;
-    font-weight:bold;
-}
-
-/* FORM */
-
-.form-group{
-    margin-top:18px;
-}
-
-label{
-    display:block;
-    color:#ddd;
-    margin-bottom:7px;
-    font-size:14px;
 }
 
 input{
     width:100%;
-    padding:14px;
-    border-radius:9px;
-    border:1px solid #3d3d3d;
-    background:#080808;
-    color:#fff;
-    font-size:16px;
+    height:54px;
+
+    padding:0 17px 0 48px;
+
+    border-radius:14px;
     outline:none;
+
+    border:1px solid #1c416d;
+    background:#040914;
+
+    color:#fff;
+    font-size:14px;
+
+    transition:.25s;
+}
+
+input::placeholder{
+    color:#52627c;
 }
 
 input:focus{
-    border-color:#ff2525;
-    box-shadow:0 0 8px rgba(255,0,0,.2);
+    border-color:#24c9ff;
+
+    box-shadow:
+        0 0 0 3px rgba(36,201,255,.07),
+        0 0 25px rgba(36,201,255,.08);
 }
 
-/* BKASH */
+/* ===== DIAMOND GRID ===== */
 
-.payment{
-    margin-top:20px;
-    padding:20px;
+.diamond-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.diamond-card{
+    position:relative;
+    min-height:153px;
+
+    padding:17px 10px;
+
+    border-radius:18px;
     text-align:center;
-    border-radius:14px;
+    cursor:pointer;
+
     background:
-        linear-gradient(135deg,#e2136e,#a0004d);
-    box-shadow:0 8px 20px rgba(226,19,110,.15);
+        linear-gradient(
+            145deg,
+            rgba(13,28,50,.96),
+            rgba(5,10,20,.98)
+        );
+
+    border:1px solid #173d6b;
+
+    transition:.25s;
 }
 
-.payment h3{
-    font-size:20px;
+.diamond-card:hover{
+    transform:translateY(-4px);
+    border-color:#22c9ff;
+    box-shadow:
+        0 12px 35px rgba(0,174,255,.13);
 }
 
-.number{
-    font-size:25px;
-    font-weight:bold;
-    letter-spacing:1px;
-    margin:10px 0;
+.diamond-card.active{
+    border:2px solid #2dd6ff;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12,50,76,.96),
+            rgba(7,14,29,.98)
+        );
+
+    box-shadow:
+        0 0 0 3px rgba(45,214,255,.05),
+        0 0 35px rgba(0,188,255,.17);
 }
 
-.send{
+.diamond-icon{
+    font-size:36px;
+    margin-top:7px;
+
+    filter:
+        drop-shadow(0 0 12px rgba(0,205,255,.55));
+}
+
+.diamond-card h3{
+    margin-top:7px;
     font-size:14px;
 }
 
-.copy{
-    margin-top:12px;
-    padding:10px 17px;
-    border:0;
-    border-radius:8px;
-    background:#fff;
-    color:#d0005d;
-    font-weight:bold;
-    cursor:pointer;
+.price{
+    margin-top:7px;
+    color:#35d5ff;
+    font-size:15px;
+    font-weight:900;
 }
 
-/* CONFIRM */
+.tag{
+    position:absolute;
+    right:7px;
+    top:7px;
 
-.confirm{
-    width:100%;
-    margin-top:20px;
-    padding:16px;
-    border:0;
-    border-radius:10px;
-    background:
-        linear-gradient(90deg,#ff1616,#a90000);
-    color:white;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 7px 20px rgba(255,0,0,.2);
+    padding:4px 7px;
+    border-radius:20px;
+
+    font-size:7px;
+    font-weight:900;
+
+    color:#fff;
+    background:linear-gradient(90deg,#7c3cff,#b24cff);
 }
 
-.confirm:hover{
-    transform:translateY(-2px);
+/* ===== PAYMENT ===== */
+
+.payment-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
 }
 
-/* COMPLETE */
+.payment-card{
+    padding:19px;
+    border-radius:17px;
 
-.complete{
-    display:none;
-    margin-top:18px;
-    padding:20px;
-    border-radius:12px;
-    background:#063b20;
-    border:1px solid #16b96a;
-    text-align:center;
+    background:#040914;
+    border:1px solid #183e68;
 }
 
-.complete-icon{
-    font-size:42px;
+.bkash-row{
+    display:flex;
+    align-items:center;
+    gap:13px;
 }
 
-.complete h2{
-    color:#25e886;
-    margin:7px 0;
-}
+.bkash-logo{
+    width:55px;
+    height:55px;
 
-.complete p{
-    color:#d8ffea;
-    font-size:14px;
-}
+    border-radius:15px;
 
-/* WHATSAPP */
-
-.whatsapp{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:#25D366;
     display:flex;
     align-items:center;
     justify-content:center;
-    text-decoration:none;
-    box-shadow:0 6px 25px rgba(0,0,0,.6);
-    z-index:999;
-    animation:pulse 2s infinite;
+
+    background:#e2136e;
+
+    font-weight:900;
+    font-size:16px;
+
+    box-shadow:
+        0 0 25px rgba(226,19,110,.18);
 }
 
-.whatsapp span{
-    font-size:32px;
+.label{
+    color:#687992;
+    font-size:10px;
 }
 
-@keyframes pulse{
-    0%{
-        box-shadow:0 0 0 0 rgba(37,211,102,.5);
-    }
-    70%{
-        box-shadow:0 0 0 12px rgba(37,211,102,0);
-    }
-    100%{
-        box-shadow:0 0 0 0 rgba(37,211,102,0);
-    }
+.number{
+    margin-top:5px;
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:1px;
 }
 
-/* FOOTER */
+.copy-btn{
+    margin-top:14px;
 
-.footer{
-    text-align:center;
-    color:#666;
+    width:100%;
+    height:40px;
+
+    border-radius:10px;
+
+    border:1px solid #1eaf68;
+    background:rgba(20,255,125,.06);
+
+    color:#4effa1;
+
+    font-size:11px;
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+.instructions{
+    height:100%;
+    padding:17px;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,34,58,.65),
+            rgba(5,10,20,.7)
+        );
+
+    border:1px solid rgba(55,154,255,.17);
+}
+
+.instructions h4{
+    color:#4fd8ff;
     font-size:12px;
-    padding:18px;
+    margin-bottom:9px;
+}
+
+.instructions p{
+    color:#8492a9;
+    font-size:11px;
+    line-height:1.8;
+}
+
+/* ===== TRANSACTION ===== */
+
+.verify-box{
+    display:grid;
+    grid-template-columns:1fr 280px;
+    gap:14px;
+}
+
+.verify-info{
+    padding:17px;
+    border-radius:15px;
+
+    background:#040914;
+    border:1px solid #173b64;
+}
+
+.transaction-wrap{
+    position:relative;
+}
+
+.transaction-wrap input{
+    padding-left:48px;
+}
+
+.transaction-icon{
+    position:absolute;
+    left:17px;
+    top:15px;
+    font-size:18px;
+}
+
+.verify-side{
+    padding:17px;
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(21,29,54,.8),
+            rgba(6,10,20,.9)
+        );
+
+    border:1px solid #263a64;
+}
+
+.lock{
+    font-size:23px;
+    margin-bottom:8px;
+}
+
+.verify-side h4{
+    color:#62d9ff;
+    font-size:12px;
+}
+
+.verify-side p{
+    margin-top:6px;
+    color:#7889a3;
+    font-size:10px;
+    line-height:1.7;
+}
+
+/* ===== STATUS ===== */
+
+.status{
+    display:none;
+    margin-top:13px;
+    padding:13px;
+
+    border-radius:13px;
+
+    font-size:11px;
+    font-weight:700;
+}
+
+.status.success{
+    display:block;
+    color:#57ffad;
+
+    background:rgba(15,255,126,.06);
+    border:1px solid rgba(15,255,126,.35);
+}
+
+.status.error{
+    display:block;
+    color:#ff7185;
+
+    background:rgba(255,40,70,.06);
+    border:1px solid rgba(255,40,70,.28);
+}
+
+.status.loading{
+    display:block;
+    color:#5edbff;
+
+    background:rgba(30,185,255,.06);
+    border:1px solid rgba(30,185,255,.25);
+}
+
+/* ===== ORDER SUMMARY ===== */
+
+.order-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.summary{
+    padding:16px;
+
+    border-radius:15px;
+
+    background:#040914;
+    border:1px solid #17385e;
+}
+
+.summary span{
+    color:#65758d;
+    font-size:10px;
+}
+
+.summary strong{
+    display:block;
+    margin-top:6px;
+
+    color:#fff;
+    font-size:15px;
+}
+
+.summary .total{
+    color:#35d5ff;
+}
+
+/* ===== BUTTON ===== */
+
+.submit{
+    width:100%;
+    height:56px;
+
+    margin-top:13px;
+
+    border:0;
+    border-radius:15px;
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            90deg,
+            #168cff,
+            #704dff,
+            #a447ff
+        );
+
+    box-shadow:
+        0 12px 35px rgba(75,83,255,.23);
+
+    transition:.25s;
+}
+
+.submit:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 18px 45px rgba(75,83,255,.35);
+}
+
+.submit:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+    transform:none;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+    text-align:center;
+    padding:35px 10px 105px;
+
+    color:#566780;
+    font-size:10px;
+    line-height:2;
+}
+
+/* ===== WHATSAPP ===== */
+
+.support{
+    position:fixed;
+    right:18px;
+    bottom:85px;
+    z-index:90;
+
+    padding:7px 12px;
+
+    border-radius:20px;
+
+    background:#09121f;
+    border:1px solid #1e3d60;
+
+    color:#dce9ff;
+
+    font-size:10px;
+    font-weight:900;
+}
+
+.whatsapp{
+    position:fixed;
+    right:17px;
+    bottom:18px;
+    z-index:90;
+
+    width:58px;
+    height:58px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:#fff;
+    background:#25d366;
+
+    text-decoration:none;
+    font-size:28px;
+
+    box-shadow:
+        0 8px 30px rgba(37,211,102,.35);
+
+    transition:.25s;
+}
+
+.whatsapp:hover{
+    transform:scale(1.08);
+}
+
+/* ===== SUCCESS POPUP ===== */
+
+.popup{
+    position:fixed;
+    inset:0;
+    z-index:200;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(8px);
+}
+
+.popup.show{
+    display:flex;
+}
+
+.popup-box{
+    width:90%;
+    max-width:390px;
+
+    padding:30px;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b1d22,
+            #071016
+        );
+
+    border:1px solid rgba(60,255,166,.35);
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.6);
+}
+
+.success-icon{
+    width:70px;
+    height:70px;
+
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(30,255,140,.08);
+    border:2px solid #30ff9a;
+
+    color:#30ff9a;
+
+    font-size:35px;
+}
+
+.popup h2{
+    margin-top:17px;
+    color:#50ffa8;
+}
+
+.popup p{
+    margin-top:8px;
+    color:#8999ad;
+    font-size:11px;
+    line-height:1.7;
+}
+
+.close-popup{
+    margin-top:20px;
+
+    padding:11px 24px;
+
+    border:0;
+    border-radius:10px;
+
+    background:#1b3040;
+    color:#fff;
+
+    cursor:pointer;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:800px){
+
+    .hero-diamond{
+        opacity:.16;
+        right:5%;
+        font-size:100px;
+    }
+
+    .diamond-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .payment-layout,
+    .verify-box{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:520px){
+
+    header{
+        padding:13px 4%;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .hero{
+        width:94%;
+        min-height:270px;
+        border-radius:23px;
+    }
+
+    .hero-content{
+        padding:35px 22px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .hero-diamond{
+        right:3%;
+        top:70%;
+        font-size:90px;
+    }
+
+    .container{
+        width:94%;
+    }
+
+    .section{
+        padding:16px;
+        border-radius:19px;
+    }
+
+    .diamond-grid{
+        gap:8px;
+    }
+
+    .diamond-card{
+        min-height:140px;
+        padding:13px 7px;
+    }
+
+    .diamond-icon{
+        font-size:30px;
+    }
+
+    .diamond-card h3{
+        font-size:12px;
+    }
+
+    .price{
+        font-size:13px;
+    }
+
+    .number{
+        font-size:17px;
+    }
+
+    .order-grid{
+        grid-template-columns:1fr;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- HEADER -->
 
-    <!-- HEADER -->
+<header>
 
-    <div class="header">
+    <div class="logo">
+        <div class="logo-icon">💎</div>
+        <span>RED E-TOPUP</span>
+    </div>
 
-        <h1>RED TOPUP</h1>
+    <div class="online">
+        <div class="online-dot"></div>
+        ONLINE
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-small">
+            FREE FIRE
+        </div>
+
+        <h1>
+            DIAMOND<br>
+            TOP-UP
+        </h1>
 
         <p>
-            ⚡ Fast • Secure • Instant Top-Up
+            Get Your Diamonds &amp; Be a Legend!
         </p>
+
+        <div class="hero-badges">
+            <div class="hero-badge">⚡ Fast Delivery</div>
+            <div class="hero-badge">🛡 Secure Payment</div>
+            <div class="hero-badge">⭐ Trusted Service</div>
+        </div>
+
+    </div>
+
+    <div class="hero-diamond">
+        💎
+    </div>
+
+</section>
+
+
+<div class="container">
+
+
+<!-- UID -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <div class="step">01</div>
+
+        <div class="section-title">
+            Enter UID
+        </div>
+
+        <div class="section-sub">
+            REQUIRED
+        </div>
+
+    </div>
+
+    <div class="input-wrap">
+
+        <div class="input-icon">👤</div>
+
+        <input
+            id="uid"
+            type="text"
+            inputmode="numeric"
+            placeholder="Enter your Game UID"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- DIAMOND -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <div class="step">02</div>
+
+        <div class="section-title">
+            Select Diamond Package
+        </div>
+
+        <div class="section-sub">
+            CHOOSE PACKAGE
+        </div>
 
     </div>
 
 
-    <div class="content">
-
-        <!-- CATEGORY -->
-
-        <div class="title">
-            🔥 TOP-UP CATEGORY
-        </div>
-
-        <div class="category-grid">
-
-            <div class="category active"
-                 onclick="showCategory(this,'uid')">
-
-                <div class="icon">🆔</div>
-                UID TOP UP
-
-            </div>
+    <div class="diamond-grid">
 
 
-            <div class="category"
-                 onclick="showCategory(this,'monthly')">
+        <div class="diamond-card"
+             onclick="selectPackage(this,'25 Diamonds','৳20')">
 
-                <div class="icon">📅</div>
-                MONTHLY
-
-            </div>
-
-
-            <div class="category"
-                 onclick="showCategory(this,'weekly')">
-
-                <div class="icon">🗓️</div>
-                WEEKLY
-
-            </div>
-
-
-            <div class="category"
-                 onclick="showCategory(this,'mystery')">
-
-                <div class="icon">🎁</div>
-                MYSTERY BOX
-
-            </div>
-
-
-            <div class="category"
-                 onclick="showCategory(this,'special')">
-
-                <div class="icon">⭐</div>
-                SPECIAL
-
-            </div>
-
-
-            <div class="category"
-                 onclick="showCategory(this,'all')">
-
-                <div class="icon">💎</div>
-                ALL TOP UP
-
-            </div>
+            <div class="diamond-icon">💎</div>
+            <h3>25 Diamonds</h3>
+            <div class="price">৳ 20</div>
 
         </div>
 
 
-        <!-- PRODUCTS -->
+        <div class="diamond-card"
+             onclick="selectPackage(this,'50 Diamonds','৳35')">
 
-        <div class="products">
-
-            <div class="title" id="productTitle">
-                💎 UID TOP UP
-            </div>
-
-            <div id="productList"></div>
+            <div class="diamond-icon">💎</div>
+            <h3>50 Diamonds</h3>
+            <div class="price">৳ 35</div>
 
         </div>
 
 
-        <!-- UID -->
+        <div class="diamond-card"
+             onclick="selectPackage(this,'100 Diamonds','৳65')">
 
-        <div class="form-group">
+            <div class="tag">POPULAR</div>
 
-            <label>
-                🆔 Player UID
-            </label>
-
-            <input
-                type="text"
-                id="uid"
-                placeholder="আপনার Player UID লিখুন"
-            >
+            <div class="diamond-icon">💎</div>
+            <h3>100 Diamonds</h3>
+            <div class="price">৳ 65</div>
 
         </div>
 
 
-        <!-- BKASH -->
+        <div class="diamond-card"
+             onclick="selectPackage(this,'210 Diamonds','৳130')">
 
-        <div class="payment">
+            <div class="diamond-icon">💎</div>
+            <h3>210 Diamonds</h3>
+            <div class="price">৳ 130</div>
 
-            <h3>
-                📱 bKash Send Money
-            </h3>
+        </div>
 
-            <div class="number">
-                01962575788
+
+        <div class="diamond-card"
+             onclick="selectPackage(this,'530 Diamonds','৳320')">
+
+            <div class="tag">BEST VALUE</div>
+
+            <div class="diamond-icon">💎</div>
+            <h3>530 Diamonds</h3>
+            <div class="price">৳ 320</div>
+
+        </div>
+
+
+        <div class="diamond-card"
+             onclick="selectPackage(this,'1080 Diamonds','৳640')">
+
+            <div class="tag">HOT</div>
+
+            <div class="diamond-icon">💎</div>
+            <h3>1080 Diamonds</h3>
+            <div class="price">৳ 640</div>
+
+        </div>
+
+
+        <div class="diamond-card"
+             onclick="selectPackage(this,'2200 Diamonds','৳1280')">
+
+            <div class="diamond-icon">💎</div>
+            <h3>2200 Diamonds</h3>
+            <div class="price">৳ 1280</div>
+
+        </div>
+
+
+        <div class="diamond-card"
+             onclick="selectPackage(this,'5600 Diamonds','৳3200')">
+
+            <div class="diamond-icon">💎</div>
+            <h3>5600 Diamonds</h3>
+            <div class="price">৳ 3200</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PAYMENT -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <div class="step">03</div>
+
+        <div class="section-title">
+            Payment Information
+        </div>
+
+        <div class="section-sub">
+            BKASH SEND MONEY
+        </div>
+
+    </div>
+
+
+    <div class="payment-layout">
+
+
+        <div class="payment-card">
+
+            <div class="bkash-row">
+
+                <div class="bkash-logo">
+                    bKash
+                </div>
+
+                <div>
+
+                    <div class="label">
+                        bKash Send Money
+                    </div>
+
+                    <div class="number">
+                        01962575788
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="send">
-                এই নম্বরে Send Money করুন
-            </div>
 
             <button
-                class="copy"
+                class="copy-btn"
                 onclick="copyNumber()">
 
-                📋 Copy Number
+                📋 COPY NUMBER
 
             </button>
 
         </div>
 
 
-        <!-- TRANSACTION -->
+        <div class="instructions">
 
-        <div class="form-group">
-
-            <label>
-                🧾 bKash Transaction ID
-            </label>
-
-            <input
-                type="text"
-                id="trx"
-                placeholder="Transaction ID লিখুন"
-            >
-
-        </div>
-
-
-        <!-- CONFIRM -->
-
-        <button
-            class="confirm"
-            onclick="confirmOrder()">
-
-            ✅ CONFIRM ORDER
-
-        </button>
-
-
-        <!-- COMPLETE -->
-
-        <div
-            class="complete"
-            id="complete">
-
-            <div class="complete-icon">
-                ✅
-            </div>
-
-            <h2>
-                COMPLETE
-            </h2>
+            <h4>
+                💡 Payment Instruction
+            </h4>
 
             <p>
-                আপনার অর্ডার সফলভাবে কনফার্ম হয়েছে।
+                1. bKash থেকে
+                <b>01962575788</b>-এ
+                Send Money করুন।
+                <br>
+                2. Payment করার পর আপনার
+                Transaction ID নিচে দিন।
+                <br>
+                3. Transaction ID verify হওয়ার
+                পরেই Order submit হবে।
             </p>
 
         </div>
 
     </div>
 
+</section>
 
-    <div class="footer">
-        RED TOPUP © 2026
+
+<!-- TRANSACTION -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <div class="step">04</div>
+
+        <div class="section-title">
+            Transaction ID
+        </div>
+
+        <div class="section-sub">
+            VERIFICATION
+        </div>
+
     </div>
+
+
+    <div class="verify-box">
+
+
+        <div class="verify-info">
+
+            <div class="transaction-wrap">
+
+                <div class="transaction-icon">
+                    🧾
+                </div>
+
+                <input
+                    id="transactionId"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="Enter bKash Transaction ID"
+                >
+
+            </div>
+
+
+            <div
+                id="status"
+                class="status">
+            </div>
+
+        </div>
+
+
+        <div class="verify-side">
+
+            <div class="lock">
+                🔐
+            </div>
+
+            <h4>
+                Secure Verification
+            </h4>
+
+            <p>
+                Transaction ID যাচাই না হওয়া
+                পর্যন্ত Order Submit করা যাবে না।
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SUMMARY -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <div class="step">05</div>
+
+        <div class="section-title">
+            Order Summary
+        </div>
+
+    </div>
+
+
+    <div class="order-grid">
+
+        <div class="summary">
+
+            <span>
+                Selected Package
+            </span>
+
+            <strong id="selectedPackage">
+                Not Selected
+            </strong>
+
+        </div>
+
+
+        <div class="summary">
+
+            <span>
+                Total Price
+            </span>
+
+            <strong
+                id="totalPrice"
+                class="total">
+
+                ৳ 0
+
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <button
+        id="submitButton"
+        class="submit"
+        onclick="verifyAndSubmit()">
+
+        🔐 VERIFY &amp; SUBMIT ORDER
+
+    </button>
+
+</section>
+
+
+<footer>
+
+    © 2026 RED E-TOPUP • All Rights Reserved
+    <br>
+    Fast • Secure • Trusted Diamond Top-Up
+
+</footer>
 
 </div>
 
 
-<!-- WHATSAPP -->
+<!-- SUPPORT -->
+
+<div class="support">
+    SUPPORT
+</div>
 
 <a
     class="whatsapp"
     href="https://wa.me/8801962575788"
     target="_blank"
-    title="WhatsApp">
+    aria-label="WhatsApp Support">
 
-    <span>💬</span>
+    ☎
 
 </a>
 
 
+<!-- SUCCESS POPUP -->
+
+<div
+    id="successPopup"
+    class="popup">
+
+    <div class="popup-box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Payment Verified!
+        </h2>
+
+        <p>
+            Transaction ID successfully verified.
+            Your order has been submitted successfully.
+        </p>
+
+        <button
+            class="close-popup"
+            onclick="closePopup()">
+
+            CLOSE
+
+        </button>
+
+    </div>
+
+</div>
+
+
 <script>
 
-/* Selected Product */
+/*
+==================================================
+RED E-TOPUP CONFIGURATION
+==================================================
 
-let selectedProduct = null;
+IMPORTANT:
+Pure HTML cannot verify real bKash transactions.
 
-let selectedCategory = "UID TOP UP";
+Your backend must provide:
 
+POST /api/verify-payment
 
-/* ALL PRODUCTS */
+Expected JSON:
 
-const products = {
+{
+    "transactionId": "ABC123",
+    "amount": 65,
+    "phone": "01962575788"
+}
 
-    uid:[
-        ["25 Diamond","23 BDT"],
-        ["100 Diamond","70 BDT"],
-        ["115 Diamond","80 BDT"],
-        ["240 Diamond","160 BDT"],
-        ["610 Diamond","400 BDT"],
-        ["1240 Diamond","800 BDT"],
-        ["2530 Diamond","1600 BDT"]
-    ],
+Successful response:
 
+{
+    "success": true
+}
 
-    monthly:[
-        ["Monthly Membership","790 BDT"]
-    ],
+Failed response:
 
+{
+    "success": false,
+    "message": "Invalid transaction"
+}
 
-    weekly:[
-        ["Weekly Membership","160 BDT"]
-    ],
+==================================================
+*/
 
-
-    mystery:[
-        ["Mystery Box","100 BDT"],
-        ["Premium Mystery Box","200 BDT"]
-    ],
-
-
-    special:[
-        ["Special Top Up","300 BDT"],
-        ["Premium Special","500 BDT"]
-    ],
+const VERIFY_API = "/api/verify-payment";
 
 
-    all:[
-        ["25 Diamond","23 BDT"],
-        ["100 Diamond","70 BDT"],
-        ["115 Diamond","80 BDT"],
-        ["240 Diamond","160 BDT"],
-        ["610 Diamond","400 BDT"],
-        ["Monthly Membership","790 BDT"],
-        ["Weekly Membership","160 BDT"],
-        ["Mystery Box","100 BDT"],
-        ["Premium Mystery Box","200 BDT"]
-    ]
-
-};
+let selectedPackage = null;
 
 
-/* INITIAL */
+/* ================================
+   SELECT PACKAGE
+================================ */
 
-showProducts("uid");
-
-
-/* CATEGORY */
-
-function showCategory(element,category){
+function selectPackage(element, name, price){
 
     document
-    .querySelectorAll(".category")
-    .forEach(function(item){
+        .querySelectorAll(".diamond-card")
+        .forEach(card => {
 
-        item.classList.remove("active");
+            card.classList.remove("active");
 
-    });
+        });
 
 
     element.classList.add("active");
 
 
-    selectedCategory =
-        category.toUpperCase();
+    selectedPackage = {
+        name: name,
+        price: price
+    };
 
 
-    showProducts(category);
+    document
+        .getElementById("selectedPackage")
+        .innerText = name;
 
+
+    document
+        .getElementById("totalPrice")
+        .innerText = price;
+
+
+    clearStatus();
 }
 
 
-/* SHOW PRODUCTS */
-
-function showProducts(category){
-
-    let list =
-        document.getElementById("productList");
-
-    let title =
-        document.getElementById("productTitle");
-
-
-    list.innerHTML = "";
-
-    selectedProduct = null;
-
-
-    title.innerHTML =
-        "💎 " + category.toUpperCase();
-
-
-    products[category].forEach(function(item){
-
-        let div =
-            document.createElement("div");
-
-
-        div.className =
-            "product";
-
-
-        div.innerHTML = `
-
-            <h3>${item[0]}</h3>
-
-            <div class="price">
-                ৳ ${item[1].replace(" BDT","")}
-            </div>
-
-        `;
-
-
-        div.onclick = function(){
-
-            document
-            .querySelectorAll(".product")
-            .forEach(function(p){
-
-                p.classList.remove("active");
-
-            });
-
-
-            div.classList.add("active");
-
-
-            selectedProduct = {
-
-                name:item[0],
-
-                price:item[1]
-
-            };
-
-        };
-
-
-        list.appendChild(div);
-
-    });
-
-}
-
-
-/* COPY BKASH */
+/* ================================
+   COPY BKASH NUMBER
+================================ */
 
 function copyNumber(){
 
-    navigator.clipboard.writeText(
-        "01962575788"
-    );
+    navigator.clipboard
+        .writeText("01962575788")
+        .then(() => {
 
-    alert(
-        "bKash নম্বর কপি হয়েছে!\n01962575788"
-    );
+            showStatus(
+                "success",
+                "✓ bKash Number Copied: 01962575788"
+            );
+
+        })
+        .catch(() => {
+
+            alert(
+                "bKash Number: 01962575788"
+            );
+
+        });
 
 }
 
 
-/* CONFIRM ORDER */
+/* ================================
+   STATUS
+================================ */
 
-function confirmOrder(){
+function showStatus(type, message){
 
-    let uid =
+    const status =
+        document.getElementById("status");
+
+    status.className =
+        "status " + type;
+
+    status.innerText = message;
+}
+
+
+function clearStatus(){
+
+    const status =
+        document.getElementById("status");
+
+    status.className = "status";
+    status.innerText = "";
+
+}
+
+
+/* ================================
+   VERIFY PAYMENT
+================================ */
+
+async function verifyAndSubmit(){
+
+    const uid =
         document
         .getElementById("uid")
         .value
         .trim();
 
 
-    let trx =
+    const transactionId =
         document
-        .getElementById("trx")
+        .getElementById("transactionId")
         .value
         .trim();
 
 
+    /* UID CHECK */
+
     if(!uid){
 
-        alert(
-            "অনুগ্রহ করে Player UID লিখুন!"
+        showStatus(
+            "error",
+            "✕ Please enter your Player UID."
         );
 
         return;
+    }
+
+
+    /* PACKAGE CHECK */
+
+    if(!selectedPackage){
+
+        showStatus(
+            "error",
+            "✕ Please select a Diamond Package."
+        );
+
+        return;
+    }
+
+
+    /* TRANSACTION CHECK */
+
+    if(!transactionId){
+
+        showStatus(
+            "error",
+            "✕ Please enter your Transaction ID."
+        );
+
+        return;
+    }
+
+
+    const button =
+        document.getElementById("submitButton");
+
+
+    button.disabled = true;
+
+    button.innerText =
+        "⏳ VERIFYING PAYMENT...";
+
+
+    showStatus(
+        "loading",
+        "⏳ Checking Transaction ID..."
+    );
+
+
+    try{
+
+        /*
+        Send Transaction ID + expected amount
+        to your secure backend.
+        */
+
+        const response =
+            await fetch(
+                VERIFY_API,
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        uid:uid,
+
+                        transactionId:
+                            transactionId,
+
+                        package:
+                            selectedPackage.name,
+
+                        amount:
+                            selectedPackage.price,
+
+                        paymentNumber:
+                            "01962575788"
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if(result.success === true){
+
+            showStatus(
+                "success",
+                "✓ Transaction ID Verified Successfully!"
+            );
+
+
+            /*
+            SUCCESS
+            */
+
+            document
+                .getElementById("successPopup")
+                .classList.add("show");
+
+
+        }else{
+
+            showStatus(
+                "error",
+                "✕ Invalid Transaction ID অথবা Payment পাওয়া যায়নি।"
+            );
+
+        }
+
+
+    }catch(error){
+
+        /*
+        Backend না থাকলে এখানে আসবে।
+        */
+
+        showStatus(
+            "error",
+            "✕ Payment verification server-এর সাথে যোগাযোগ করা যায়নি।"
+        );
 
     }
 
 
-    if(!selectedProduct){
+    button.disabled = false;
 
-        alert(
-            "অনুগ্রহ করে একটি প্যাকেজ নির্বাচন করুন!"
-        );
+    button.innerText =
+        "🔐 VERIFY & SUBMIT ORDER";
 
-        return;
-
-    }
+}
 
 
-    if(!trx){
+/* ================================
+   CLOSE POPUP
+================================ */
 
-        alert(
-            "অনুগ্রহ করে Transaction ID লিখুন!"
-        );
-
-        return;
-
-    }
-
-
-    /* COMPLETE */
+function closePopup(){
 
     document
-    .getElementById("complete")
-    .style.display = "block";
-
-
-    /* WHATSAPP MESSAGE */
-
-    let message =
-`🔴 RED TOPUP ORDER
-
-📂 Category:
-${selectedCategory}
-
-💎 Product:
-${selectedProduct.name}
-
-💰 Price:
-${selectedProduct.price}
-
-🆔 Player UID:
-${uid}
-
-🧾 Transaction ID:
-${trx}
-
-📱 Payment:
-bKash Send Money
-
-💳 bKash:
-01962575788`;
-
-
-    let url =
-        "https://wa.me/8801962575788?text=" +
-        encodeURIComponent(message);
-
-
-    setTimeout(function(){
-
-        window.open(
-            url,
-            "_blank"
-        );
-
-    },500);
+        .getElementById("successPopup")
+        .classList.remove("show");
 
 }
 
 </script>
 
 </body>
-    </html>
+            </html>
