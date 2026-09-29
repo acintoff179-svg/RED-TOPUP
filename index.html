@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RED TOPUP & E-SPORTS</title>
+    <title>২৪/৭ গেমিং টুর্নামেন্ট</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0e14;
-            --card-bg: #151922;
-            --card-border: #222a38;
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --card-border: #30363d;
             --accent-color: #ff3366;
             --secondary-color: #00e676;
             --text-color: #ffffff;
-            --text-gray: #94a3b8;
+            --text-gray: #8b949e;
         }
 
         * {
@@ -26,63 +26,88 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding-bottom: 40px;
+            padding-bottom: 30px;
         }
 
         header {
-            background: #151922;
-            padding: 12px 20px;
+            background: #161b22;
+            padding: 15px 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 12px;
             border-bottom: 1px solid var(--card-border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .brand-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .site-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            background: var(--accent-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
         }
 
         .brand-text h1 {
-            font-size: 16px;
+            font-size: 18px;
             color: #fff;
         }
 
         .brand-text p {
-            font-size: 10px;
+            font-size: 11px;
             color: var(--text-gray);
         }
 
         .container {
-            max-width: 480px;
+            max-width: 500px;
             margin: 0 auto;
             padding: 15px;
         }
 
+        .banner-box {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 1px solid var(--card-border);
+        }
+
+        .banner-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .download-card {
+            background: linear-gradient(135deg, #1f2937, #111827);
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid var(--secondary-color);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--secondary-color);
+            color: #000;
+            width: 100%;
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
         .section-title {
-            font-size: 15px;
+            font-size: 16px;
             margin-bottom: 12px;
             border-left: 4px solid var(--accent-color);
             padding-left: 8px;
         }
 
-        /* Tournament List */
         .tournament-card {
             background-color: var(--card-bg);
             border-radius: 10px;
@@ -91,7 +116,18 @@
             border: 1px solid var(--card-border);
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .tournament-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .match-info {
+            flex: 1;
         }
 
         .match-info h3 {
@@ -102,58 +138,77 @@
         .match-info p {
             font-size: 12px;
             color: var(--text-gray);
-            margin-top: 2px;
         }
 
         .join-btn {
             background: var(--accent-color);
             color: white;
-            padding: 8px 14px;
             border: none;
+            padding: 8px 12px;
             border-radius: 6px;
+            cursor: pointer;
             font-weight: bold;
             font-size: 12px;
-            cursor: pointer;
+            text-decoration: none;
         }
 
-        /* Popup Modal Style */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 200;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .modal-content {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+        .wallet-card {
+            background-color: var(--card-bg);
             border-radius: 12px;
-            width: 100%;
-            max-width: 400px;
-            padding: 20px;
-            position: relative;
+            padding: 16px;
+            margin-top: 20px;
+            border: 1px solid var(--card-border);
         }
 
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 20px;
-            color: var(--text-gray);
-            cursor: pointer;
-        }
-
-        .modal h3 {
-            font-size: 16px;
+        .tab-buttons {
+            display: flex;
+            gap: 8px;
             margin-bottom: 15px;
-            color: var(--accent-color);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            background-color: #0d1117;
+            border: 1px solid var(--card-border);
+            color: var(--text-gray);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .tab-btn.active {
+            background-color: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+        }
+
+        .number-box {
+            background-color: #0d1117;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0 15px 0;
+            border: 1px dashed var(--secondary-color);
+        }
+
+        .number-box span {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .copy-btn {
+            background-color: #21262d;
+            color: #fff;
+            border: 1px solid var(--card-border);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
         }
 
         .input-group {
@@ -164,15 +219,15 @@
             display: block;
             font-size: 12px;
             color: var(--text-gray);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
-        .input-group input {
+        .input-group input, .input-group select {
             width: 100%;
             padding: 10px;
             border-radius: 6px;
             border: 1px solid var(--card-border);
-            background-color: #0b0e14;
+            background-color: #0d1117;
             color: #fff;
             font-size: 13px;
             outline: none;
@@ -184,87 +239,147 @@
             color: #000;
             border: none;
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
-            margin-top: 10px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="brand-info">
-            <div class="site-logo"><i class="fa-solid fa-gamepad"></i></div>
-            <div class="brand-text">
-                <h1>RED TOPUP & E-SPORTS</h1>
-                <p>খেলুন এবং প্রতিদিন আয় করুন</p>
-            </div>
+        <img src="logo.png" alt="Logo" class="site-logo">
+        <div class="brand-text">
+            <h1>২৪/৭ টুর্নামেন্ট এরিনা</h1>
+            <p>খেলুন এবং প্রতিদিন আয় করুন</p>
         </div>
     </header>
 
     <div class="container">
+
+        <div class="banner-box">
+            <img src="banner.jpg" alt="Banner" class="banner-img">
+        </div>
+
+        <div class="download-card">
+            <h3>অফিশিয়াল অ্যাপ ইনস্টল করুন</h3>
+            <p style="font-size: 12px; color: var(--text-gray); margin-top: 4px;">সহজ গেমিংয়ের জন্য অ্যাপস ডাউনলোড করুন।</p>
+            <a href="app-release.apk" download class="download-btn">
+                <i class="fa-solid fa-download"></i> অ্যাপ ডাউনলোড (.APK)
+            </a>
+        </div>
+
         <h2 class="section-title">লাইভ টুর্নামেন্ট সমূহ</h2>
 
         <div class="tournament-card">
+            <img src="match1.jpg" alt="Match 1" class="tournament-img">
             <div class="match-info">
                 <h3>ফ্রি ফায়ার ১ বনাম ১ সোলো</h3>
                 <p>এন্ট্রি ফি: ২০ টাকা | পুরস্কার: ৩৫ টাকা</p>
+                <p style="color: var(--secondary-color); font-size: 11px;">২৪/৭ ইনস্ট্যান্ট ম্যাচ</p>
             </div>
-            <button class="join-btn" onclick="openMatchModal('ফ্রি ফায়ার ১ বনাম ১ সোলো')">জয়েন করুন</button>
+            <!-- জয়েন করতে সরাসরি আপনার টেলিগ্রাম/হোয়াটসঅ্যাপে মেসেজ চলে যাবে -->
+            <a href="https://t.me/your_telegram_id" target="_blank" class="join-btn">জয়েন করুন</a>
         </div>
 
         <div class="tournament-card">
+            <img src="match2.jpg" alt="Match 2" class="tournament-img">
             <div class="match-info">
-                <h3>ফ্রি ফায়ার ৪ বনাম ৪ সিএস ম্যাচ</h3>
+                <h3>ফ্রি ফায়ার ৪ বনাম ৪ সিএস</h3>
                 <p>এন্ট্রি ফি: ৫০ টাকা | পুরস্কার: ৯০ টাকা</p>
+                <p style="color: var(--secondary-color); font-size: 11px;">১০ মিনিটের মধ্যে শুরু</p>
             </div>
-            <button class="join-btn" onclick="openMatchModal('ফ্রি ফায়ার ৪ বনাম ৪ সিএস ম্যাচ')">জয়েন করুন</button>
+            <a href="https://t.me/your_telegram_id" target="_blank" class="join-btn">জয়েন করুন</a>
         </div>
-    </div>
 
-    <!-- Join Match Pop-Up Modal -->
-    <div id="joinModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeMatchModal()">&times;</span>
-            <h3 id="modalMatchTitle">ম্যাচ জয়েন ফর্ম</h3>
-            
-            <!-- Formspree Endpoint link: আপনার Formspree ID থাকলে বসিয়ে দিন -->
-            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-                <input type="hidden" id="matchNameInput" name="Match_Name" value="">
+        <!-- ওয়ালেট সেকশন -->
+        <div class="wallet-card">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab('deposit', event)">ডিপোজিট (টাকা জমা)</button>
+                <button class="tab-btn" onclick="switchTab('withdraw', event)">উইথড্র (টাকা তোলা)</button>
+            </div>
+
+            <!-- ডিপোজিট ফর্ম (Formspree ব্যবহার করা হয়েছে যাতে তথ্য ইমেইলে যায়) -->
+            <div id="deposit" class="tab-content active">
+                <p style="font-size: 12px; color: var(--text-gray);">নিচের নম্বরে বিকাশ/নগদ থেকে সেন্ড মানি করুন:</p>
                 
-                <div class="input-group">
-                    <label>ইন-গেম নাম (In-Game Name)</label>
-                    <input type="text" name="Player_Name" placeholder="যেমন: RED_GAMER" required>
+                <div class="number-box">
+                    <span id="sendMoneyNumber">01962575788</span>
+                    <button class="copy-btn" onclick="copyNumber()">কপি করুন</button>
                 </div>
 
-                <div class="input-group">
-                    <label>প্লেয়ার ইউআইডি (Player UID / Number)</label>
-                    <input type="text" name="Player_UID" placeholder="যেমন: 123456789" required>
-                </div>
+                <!-- action="..." এর মধ্যে আপনার Formspree লিংক বসাবেন -->
+                <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+                    <input type="hidden" name="Request_Type" value="DEPOSIT">
+                    <div class="input-group">
+                        <label>পেমেন্ট মেথড</label>
+                        <select name="Payment_Method" required>
+                            <option value="bKash">বিকাশ (bKash)</option>
+                            <option value="Nagad">নগদ (Nagad)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>টাকার পরিমাণ</label>
+                        <input type="number" name="Amount" placeholder="যেমন: ১০০" required>
+                    </div>
+                    <div class="input-group">
+                        <label>ট্রানজেকশন আইডি (TrxID)</label>
+                        <input type="text" name="Transaction_ID" placeholder="যেমন: 8N7A65C4B" required>
+                    </div>
+                    <button type="submit" class="submit-btn">ডিপোজিট জমা দিন</button>
+                </form>
+            </div>
 
-                <div class="input-group">
-                    <label>পেমেন্ট ট্রানজেকশন আইডি (TrxID)</label>
-                    <input type="text" name="TrxID" placeholder="ফি পাঠানোর TrxID দিন" required>
-                </div>
+            <!-- উইথড্র ফর্ম -->
+            <div id="withdraw" class="tab-content">
+                <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+                    <input type="hidden" name="Request_Type" value="WITHDRAW">
+                    <div class="input-group">
+                        <label>পেমেন্ট মেথড</label>
+                        <select name="Payment_Method" required>
+                            <option value="bKash">বিকাশ (bKash)</option>
+                            <option value="Nagad">নগদ (Nagad)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>আপনার বিকাশ/নগদ নম্বর</label>
+                        <input type="text" name="User_Number" placeholder="০১৭xxxxxxxx" required>
+                    </div>
+                    <div class="input-group">
+                        <label>উইথড্র পরিমাণ</label>
+                        <input type="number" name="Withdraw_Amount" placeholder="সর্বনিম্ন ৫০ টাকা" required>
+                    </div>
+                    <button type="submit" class="submit-btn" style="background: var(--accent-color); color: white;">উইথড্র জমা দিন</button>
+                </form>
+            </div>
 
-                <button type="submit" class="submit-btn">কনফার্ম জয়েন করুন</button>
-            </form>
         </div>
+
     </div>
 
     <script>
-        function openMatchModal(matchTitle) {
-            document.getElementById('modalMatchTitle').innerText = matchTitle;
-            document.getElementById('matchNameInput').value = matchTitle;
-            document.getElementById('joinModal').style.style.display = 'none'; // reset just in case
-            document.getElementById('joinModal').style.display = 'flex';
+        function copyNumber() {
+            const number = document.getElementById("sendMoneyNumber").innerText;
+            navigator.clipboard.writeText(number);
+            alert("নম্বর কপি করা হয়েছে: " + number);
         }
 
-        function closeMatchModal() {
-            document.getElementById('joinModal').style.display = 'none';
+        function switchTab(tabName, event) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
         }
     </script>
 </body>
-</html>
+                            </html>
