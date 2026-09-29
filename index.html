@@ -1,973 +1,261 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top-Up BD</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        h2 {
+            text-align: center;
+            color: #e50914;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ddd;
+        }
+        
+        /* Package Grid */
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: #2a2a2a;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .card.active {
+            border-color: #e50914;
+            background: #331013;
+        }
+        .card .title {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .card .price {
+            font-size: 15px;
+            color: #e50914;
+            font-weight: bold;
+            margin-top: 5px;
+        }
 
-<title>BOSTI TOPUP BD</title>
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 5px;
+            color: #bbb;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #2a2a2a;
+            color: #fff;
+            font-size: 14px;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #e50914;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+        /* Payment Methods */
+        .payment-box {
+            background: #2a2a2a;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .payment-info {
+            font-size: 14px;
+        }
+        .payment-info span {
+            display: block;
+            font-size: 12px;
+            color: #aaa;
+        }
+        .copy-btn {
+            background: #e50914;
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .copy-btn:active {
+            background: #b20710;
+        }
 
-body{
-    min-height:100vh;
-    background:
-      radial-gradient(circle at 50% -10%,#3b0715 0%,#10070b 38%,#06070a 75%);
-    color:#fff;
-}
-
-.container{
-    width:min(680px,94%);
-    margin:auto;
-    padding:18px 0 110px;
-}
-
-/* HEADER */
-.header{
-    text-align:center;
-    padding:27px 15px;
-    border-radius:25px;
-    background:linear-gradient(145deg,#1b1217,#0d0e12);
-    border:1px solid #38212a;
-    box-shadow:0 0 35px rgba(255,0,55,.13);
-}
-
-.logo{
-    font-size:30px;
-    font-weight:900;
-    letter-spacing:2px;
-    color:#ff1744;
-    text-shadow:0 0 20px rgba(255,23,68,.5);
-}
-
-.header-text{
-    margin-top:8px;
-    color:#9b9fa8;
-    font-size:13px;
-}
-
-/* TITLES */
-.title{
-    margin:25px 0 13px;
-    font-size:19px;
-}
-
-/* CATEGORY */
-.categories{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.category{
-    padding:17px 8px;
-    text-align:center;
-    border-radius:16px;
-    background:#111319;
-    border:1px solid #292e37;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.category:hover,
-.category.active{
-    background:linear-gradient(135deg,#ff1744,#a40029);
-    border-color:#ff4968;
-    box-shadow:0 7px 20px rgba(255,23,68,.18);
-}
-
-.category-icon{
-    display:block;
-    font-size:26px;
-    margin-bottom:7px;
-}
-
-/* PACKAGES */
-.packages{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.package{
-    padding:17px;
-    border-radius:15px;
-    background:#111319;
-    border:1px solid #292e37;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.package:hover,
-.package.selected{
-    border-color:#ff1744;
-    background:#1c0d13;
-    box-shadow:0 0 17px rgba(255,23,68,.16);
-}
-
-.package-name{
-    color:#ddd;
-    font-size:14px;
-}
-
-.package-price{
-    margin-top:7px;
-    color:#ff3157;
-    font-size:20px;
-    font-weight:bold;
-}
-
-/* FORM */
-.form-box{
-    margin-top:23px;
-    padding:21px;
-    border-radius:21px;
-    background:#101319;
-    border:1px solid #292e37;
-}
-
-.form-title{
-    font-size:20px;
-}
-
-label{
-    display:block;
-    margin:16px 0 7px;
-    color:#d5d8de;
-    font-size:14px;
-}
-
-input{
-    width:100%;
-    padding:14px;
-    border-radius:11px;
-    border:1px solid #303640;
-    background:#080a0e;
-    color:#fff;
-    outline:none;
-}
-
-input:focus{
-    border-color:#ff1744;
-}
-
-/* UID */
-.uid-row{
-    display:flex;
-    gap:8px;
-}
-
-.uid-row input{
-    flex:1;
-}
-
-.check-btn{
-    padding:0 15px;
-    border:0;
-    border-radius:11px;
-    background:#ff1744;
-    color:#fff;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.player-result{
-    display:none;
-    margin-top:9px;
-    padding:11px;
-    border-radius:10px;
-    background:#0d2015;
-    border:1px solid #245a36;
-    color:#65eb8b;
-}
-
-/* PAYMENT */
-.payment{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
-
-.pay-card{
-    padding:17px;
-    border-radius:15px;
-    background:#090b0f;
-    border:1px solid #292e37;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.pay-card.selected{
-    border-color:#ff1744;
-    background:#1c0d13;
-}
-
-.pay-title{
-    font-weight:bold;
-    font-size:16px;
-}
-
-.pay-number{
-    margin-top:8px;
-    color:#ff3157;
-    font-size:18px;
-    font-weight:bold;
-}
-
-.pay-type{
-    margin-top:4px;
-    color:#9297a0;
-    font-size:12px;
-}
-
-/* COPY BUTTON */
-.copy-btn{
-    width:100%;
-    margin-top:11px;
-    padding:10px;
-    border:1px solid #393e48;
-    border-radius:9px;
-    background:#191c22;
-    color:#fff;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.copy-btn:hover{
-    background:#ff1744;
-    border-color:#ff1744;
-}
-
-.copy-btn.copied{
-    background:#159957;
-    border-color:#159957;
-}
-
-/* SELECTED PAYMENT */
-.selected-payment{
-    display:none;
-    margin-top:11px;
-    padding:12px;
-    border-radius:10px;
-    background:#1a0d13;
-    color:#ff7189;
-    font-size:13px;
-}
-
-/* CONFIRM */
-.confirm-btn{
-    width:100%;
-    margin-top:20px;
-    padding:16px;
-    border:0;
-    border-radius:13px;
-    background:linear-gradient(90deg,#ff1744,#b7002d);
-    color:#fff;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 8px 22px rgba(255,0,50,.2);
-}
-
-.confirm-btn:active{
-    transform:scale(.99);
-}
-
-/* NOTICE */
-.notice{
-    margin-top:12px;
-    padding:12px;
-    border-radius:10px;
-    background:#0b0d11;
-    color:#858b95;
-    font-size:12px;
-    line-height:1.6;
-}
-
-/* WHATSAPP */
-.whatsapp{
-    position:fixed;
-    right:18px;
-    bottom:18px;
-    z-index:100;
-    text-decoration:none;
-    text-align:center;
-}
-
-.support{
-    display:block;
-    margin-bottom:6px;
-    padding:5px 11px;
-    border-radius:8px;
-    background:#111;
-    color:#fff;
-    font-size:12px;
-    box-shadow:0 2px 10px rgba(0,0,0,.4);
-}
-
-.whatsapp-icon{
-    width:59px;
-    height:59px;
-    border-radius:50%;
-    background:#25D366;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    font-size:30px;
-    box-shadow:0 5px 22px rgba(37,211,102,.4);
-}
-
-.footer{
-    text-align:center;
-    margin-top:27px;
-    color:#555;
-    font-size:11px;
-}
-
-/* MOBILE */
-@media(max-width:500px){
-
-    .packages{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .payment{
-        grid-template-columns:1fr;
-    }
-
-    .uid-row{
-        flex-direction:column;
-    }
-
-    .check-btn{
-        padding:13px;
-    }
-
-    .logo{
-        font-size:26px;
-    }
-}
-</style>
+        /* Confirm Button */
+        .submit-btn {
+            width: 100%;
+            background: #e50914;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background: #b20710;
+        }
+    </style>
 </head>
-
 <body>
 
 <div class="container">
+    <h2>Diamond Top-Up</h2>
 
-<!-- HEADER -->
-<header class="header">
-    <div class="logo">BOSTI TOPUP BD</div>
-    <div class="header-text">
-        Fast • Secure • Premium Game Top-Up
-    </div>
-</header>
-
-
-<!-- CATEGORY -->
-<h2 class="title">Top-Up Category</h2>
-
-<div class="categories">
-
-    <div class="category active"
-         onclick="showCategory('diamond',this)">
-        <span class="category-icon">💎</span>
-        Diamond
-    </div>
-
-    <div class="category"
-         onclick="showCategory('weekly',this)">
-        <span class="category-icon">🔥</span>
-        Weekly Membership
-    </div>
-
-    <div class="category"
-         onclick="showCategory('monthly',this)">
-        <span class="category-icon">👑</span>
-        Monthly Membership
-    </div>
-
-    <div class="category"
-         onclick="showCategory('box',this)">
-        <span class="category-icon">🎁</span>
-        মিষ্টি বক্স
-    </div>
-
-</div>
-
-
-<!-- PACKAGES -->
-<h2 class="title">Select Package</h2>
-
-<div class="packages" id="packages"></div>
-
-
-<!-- ORDER FORM -->
-<div class="form-box">
-
-    <div class="form-title">
-        Order Details
-    </div>
-
-
-    <!-- UID -->
-    <label>Player UID / ID</label>
-
-    <div class="uid-row">
-
-        <input
-            id="uid"
-            type="text"
-            inputmode="numeric"
-            placeholder="Player UID লিখুন">
-
-        <button
-            class="check-btn"
-            onclick="checkPlayerName()">
-            নাম চেক
-        </button>
-
-    </div>
-
-
-    <!-- PLAYER NAME RESULT -->
-    <div
-        class="player-result"
-        id="playerResult">
-
-        Player Name:
-        <b id="playerName">Checking...</b>
-
-    </div>
-
-
-    <!-- PLAYER NAME -->
-    <label>Player Name</label>
-
-    <input
-        id="playerNameInput"
-        type="text"
-        placeholder="UID Check করার পর নাম আসবে"
-        readonly>
-
-
-    <!-- PAYMENT METHOD -->
-    <label>Payment Method</label>
-
-    <div class="payment">
-
-        <!-- BKASH -->
-        <div
-            class="pay-card"
-            onclick="selectPayment('bkash',this)">
-
-            <div class="pay-title">
-                bKash
-            </div>
-
-            <div class="pay-number">
-                01962575788
-            </div>
-
-            <div class="pay-type">
-                Send Money
-            </div>
-
-            <button
-                class="copy-btn"
-                onclick="copyNumber(event,'01962575788',this)">
-                📋 Copy Number
-            </button>
-
+    <!-- Select Package -->
+    <div class="section-title">প্যাকেজ নির্বাচন করুন:</div>
+    <div class="packages">
+        <div class="card" onclick="selectPackage(this, 23)">
+            <div class="title">25 Diamonds</div>
+            <div class="price">23৳</div>
         </div>
-
-
-        <!-- ROCKET -->
-        <div
-            class="pay-card"
-            onclick="selectPayment('rocket',this)">
-
-            <div class="pay-title">
-                Rocket
-            </div>
-
-            <div class="pay-number">
-                01992849511
-            </div>
-
-            <div class="pay-type">
-                Send Money
-            </div>
-
-            <button
-                class="copy-btn"
-                onclick="copyNumber(event,'01992849511',this)">
-                📋 Copy Number
-            </button>
-
+        <div class="card" onclick="selectPackage(this, 45)">
+            <div class="title">50 Diamonds</div>
+            <div class="price">45৳</div>
         </div>
-
+        <div class="card" onclick="selectPackage(this, 80)">
+            <div class="title">115 Diamonds</div>
+            <div class="price">80৳</div>
+        </div>
+        <div class="card" onclick="selectPackage(this, 155)">
+            <div class="title">240 Diamonds</div>
+            <div class="price">155৳</div>
+        </div>
+        <div class="card" onclick="selectPackage(this, 235)">
+            <div class="title">355 Diamonds</div>
+            <div class="price">235৳</div>
+        </div>
+        <div class="card" onclick="selectPackage(this, 390)">
+            <div class="title">610 Diamonds</div>
+            <div class="price">390৳</div>
+        </div>
     </div>
 
-
-    <!-- SELECTED PAYMENT -->
-    <div
-        class="selected-payment"
-        id="selectedPayment">
+    <!-- Player UID Input -->
+    <div class="input-group">
+        <label for="uid">Player UID / ID:</label>
+        <input type="number" id="uid" placeholder="আপনার Player UID দিন">
     </div>
 
-
-    <!-- TRANSACTION ID -->
-    <label>Transaction ID</label>
-
-    <input
-        id="transactionId"
-        type="text"
-        placeholder="Transaction ID লিখুন">
-
-
-    <!-- CONFIRM -->
-    <button
-        class="confirm-btn"
-        onclick="confirmOrder()">
-
-        🚀 CONFIRM ORDER
-
-    </button>
-
-
-    <div class="notice">
-
-        Payment করার আগে সঠিক Package নির্বাচন করুন।
-        Payment করার পর সঠিক Transaction ID দিন।
-        Transaction যাচাই সম্পন্ন না হওয়া পর্যন্ত Order সফল হিসেবে
-        দেখানো হবে না।
-
+    <!-- Payment Methods -->
+    <div class="section-title">পেমেন্ট মেথড (Send Money):</div>
+    
+    <div class="payment-box">
+        <div class="payment-info">
+            <strong>bKash: 01962575788</strong>
+            <span>Send Money</span>
+        </div>
+        <button class="copy-btn" onclick="copyNumber('01962575788')">Copy Number</button>
     </div>
 
+    <div class="payment-box">
+        <div class="payment-info">
+            <strong>Rocket: 01992849511</strong>
+            <span>Send Money</span>
+        </div>
+        <button class="copy-btn" onclick="copyNumber('01992849511')">Copy Number</button>
+    </div>
+
+    <!-- Transaction ID Input -->
+    <div class="input-group" style="margin-top: 15px;">
+        <label for="trxId">Transaction ID:</label>
+        <input type="text" id="trxId" placeholder="Transaction ID লিখুন">
+    </div>
+
+    <!-- Order Button -->
+    <button class="submit-btn" onclick="confirmOrder()">CONFIRM ORDER</button>
 </div>
-
-
-<div class="footer">
-    © 2026 BOSTI TOPUP BD
-</div>
-
-</div>
-
-
-<!-- WHATSAPP SUPPORT -->
-<a
-    class="whatsapp"
-    href="https://wa.me/8801962575788"
-    target="_blank"
-    aria-label="WhatsApp Support">
-
-    <span class="support">
-        Support
-    </span>
-
-    <div class="whatsapp-icon">
-        ☎
-    </div>
-
-</a>
-
 
 <script>
+    let selectedPrice = 0;
 
-/* =========================================
-   PACKAGE LIST
-   ========================================= */
-
-const packages = {
-
-    diamond: [
-
-        ["25 Diamonds", "23৳"],
-        ["50 Diamonds", "45৳"],
-        ["115 Diamonds", "80৳"],
-        ["240 Diamonds", "155৳"],
-        ["355 Diamonds", "235৳"],
-        ["610 Diamonds", "390৳"],
-        ["1240 Diamonds", "790৳"],
-        ["2530 Diamonds", "1590৳"],
-        ["Weekly Membership", "160৳"],
-        ["Monthly Membership", "790৳"]
-
-    ],
-
-    weekly: [
-
-        ["Weekly Membership", "160৳"]
-
-    ],
-
-    monthly: [
-
-        ["Monthly Membership", "790৳"]
-
-    ],
-
-    box: [
-
-        ["মিষ্টি বক্স", "200৳"],
-        ["Premium মিষ্টি বক্স", "250৳"]
-
-    ]
-
-};
-
-
-let selectedPackage = null;
-let selectedPayment = null;
-
-
-/* =========================================
-   SHOW CATEGORY
-   ========================================= */
-
-function showCategory(type, element){
-
-    document
-      .querySelectorAll(".category")
-      .forEach(item=>{
-          item.classList.remove("active");
-      });
-
-    element.classList.add("active");
-
-    const box =
-      document.getElementById("packages");
-
-    box.innerHTML = "";
-
-    packages[type].forEach(item=>{
-
-        const div =
-          document.createElement("div");
-
-        div.className = "package";
-
-        div.innerHTML = `
-
-            <div class="package-name">
-                ${item[0]}
-            </div>
-
-            <div class="package-price">
-                ${item[1]}
-            </div>
-
-        `;
-
-        div.onclick = function(){
-
-            document
-              .querySelectorAll(".package")
-              .forEach(p=>{
-                  p.classList.remove("selected");
-              });
-
-            div.classList.add("selected");
-
-            selectedPackage = {
-                name:item[0],
-                price:item[1]
-            };
-
-        };
-
-        box.appendChild(div);
-
-    });
-
-}
-
-
-/* =========================================
-   PAYMENT SELECT
-   ========================================= */
-
-function selectPayment(type, element){
-
-    selectedPayment = type;
-
-    document
-      .querySelectorAll(".pay-card")
-      .forEach(card=>{
-          card.classList.remove("selected");
-      });
-
-    element.classList.add("selected");
-
-    const selected =
-      document.getElementById("selectedPayment");
-
-    selected.style.display = "block";
-
-    if(type === "bkash"){
-
-        selected.innerHTML =
-        "Selected Payment: <b>bKash — 01962575788</b>";
-
+    function selectPackage(element, price) {
+        let cards = document.querySelectorAll('.card');
+        cards.forEach(card => card.classList.remove('active'));
+        element.classList.add('active');
+        selectedPrice = price;
     }
 
-    if(type === "rocket"){
-
-        selected.innerHTML =
-        "Selected Payment: <b>Rocket — 01992849511</b>";
-
+    function copyNumber(number) {
+        navigator.clipboard.writeText(number);
+        alert("নম্বর কপি হয়েছে: " + number);
     }
 
-}
+    function confirmOrder() {
+        let uid = document.getElementById('uid').value;
+        let trxId = document.getElementById('trxId').value.trim();
 
+        if (selectedPrice === 0) {
+            alert("দয়া করে একটি প্যাকেজ সিলেক্ট করুন!");
+            return;
+        }
 
-/* =========================================
-   COPY PAYMENT NUMBER
-   ========================================= */
+        if (uid === "") {
+            alert("দয়া করে আপনার Player UID দিন!");
+            return;
+        }
 
-function copyNumber(event, number, button){
+        if (trxId === "") {
+            alert("দয়া করে Transaction ID দিন!");
+            return;
+        }
 
-    event.stopPropagation();
+        // ট্রানজেকশন আইডি ভ্যালিডেশন (এখানে সঠিক ট্রানজেকশন আইডি সেট করা যাবে)
+        // উদাহরণ হিসেবে একটি ভ্যালিড আইডি দেওয়া হলো
+        let validTrxIds = ["8N7A6D5C4B", "9K8J7H6G5F"]; 
 
-    navigator.clipboard.writeText(number)
-    .then(()=>{
-
-        const oldText =
-          button.innerHTML;
-
-        button.innerHTML =
-          "✓ Copied";
-
-        button.classList.add("copied");
-
-        setTimeout(()=>{
-
-            button.innerHTML =
-              oldText;
-
-            button.classList.remove("copied");
-
-        },1500);
-
-    })
-    .catch(()=>{
-
-        alert("Copy failed. Number: " + number);
-
-    });
-
-}
-
-
-/* =========================================
-   PLAYER NAME API
-   =========================================
-
-   এখানে তোমার আসল UID API বসাতে হবে।
-
-   Example:
-
-   const response = await fetch(
-      "YOUR_PLAYER_API?uid=" +
-      encodeURIComponent(uid)
-   );
-
-   const data = await response.json();
-
-   document.getElementById("playerName").innerText =
-      data.playerName;
-
-   document.getElementById("playerNameInput").value =
-      data.playerName;
-
-   ========================================= */
-
-async function checkPlayerName(){
-
-    const uid =
-      document.getElementById("uid")
-      .value
-      .trim();
-
-    if(!uid){
-
-        alert("Player UID দিন!");
-
-        return;
+        if (validTrxIds.includes(trxId)) {
+            alert("অর্ডার সফল হয়েছে! আপনার একাউন্টে ডায়মন্ড যোগ করা হবে।");
+        } else {
+            alert("রং! ভুল ট্রানজেকশন আইডি মামা");
+        }
     }
-
-    const result =
-      document.getElementById("playerResult");
-
-    const name =
-      document.getElementById("playerName");
-
-    result.style.display = "block";
-
-    name.innerText = "Checking...";
-
-
-    /*
-      আসল API এখানে বসবে।
-
-      এখন API না থাকায় fake player name
-      দেখানো হচ্ছে না।
-    */
-
-    setTimeout(()=>{
-
-        name.innerText =
-          "Player API সংযুক্ত করুন";
-
-    },700);
-
-}
-
-
-/* =========================================
-   CONFIRM ORDER + TRANSACTION API
-   =========================================
-
-   IMPORTANT:
-
-   আসল bKash/Rocket Transaction verification
-   অবশ্যই server-side API দিয়ে করতে হবে।
-
-   Example backend request:
-
-   fetch("/https://script.google.com/macros/s/AKfycbzmp-5HD7sgSeqdH7cYa8lHcolV34iOFbICfdPCRBZrxft7BlKa0grcErlDNifbaRcc5w/exec", {
-       method:"POST",
-       headers:{
-           "Content-Type":"application/json"
-       },
-       body:JSON.stringify({
-
-           uid: uid,
-
-           playerName: playerName,
-
-           transactionId: transactionId,
-
-           paymentMethod: selectedPayment,
-
-           packageName: selectedPackage.name,
-
-           amount: selectedPackage.price
-
-       })
-   })
-
-   API response:
-
-   {
-      "success": true,
-      "message": "Payment verified"
-   }
-
-   success=true হলে Order complete করা যাবে।
-   ========================================= */
-
-async function confirmOrder(){
-
-    const uid =
-      document.getElementById("uid")
-      .value
-      .trim();
-
-    const playerName =
-      document.getElementById("playerNameInput")
-      .value
-      .trim();
-
-    const transactionId =
-      document.getElementById("transactionId")
-      .value
-      .trim();
-
-
-    if(!selectedPackage){
-
-        alert("একটি Package নির্বাচন করুন!");
-
-        return;
-    }
-
-
-    if(!uid){
-
-        alert("Player UID দিন!");
-
-        return;
-    }
-
-
-    if(!playerName){
-
-        alert("আগে Player Name Check করুন!");
-
-        return;
-    }
-
-
-    if(!selectedPayment){
-
-        alert("Payment Method নির্বাচন করুন!");
-
-        return;
-    }
-
-
-    if(!transactionId){
-
-        alert("Transaction ID দিন!");
-
-        return;
-    }
-
-
-    /*
-      এখানে তোমার আসল Transaction Verification API
-      বসাতে হবে।
-
-      API ছাড়া সরাসরি SUCCESS দেখানো হচ্ছে না।
-    */
-
-    alert(
-        "Order submitted for verification.\n\n" +
-
-        "Package: " +
-        selectedPackage.name +
-
-        "\nPrice: " +
-        selectedPackage.price +
-
-        "\nUID: " +
-        uid +
-
-        "\nPayment: " +
-        selectedPayment +
-
-        "\nTransaction ID: " +
-        transactionId +
-
-        "\n\nTransaction Verification API সংযুক্ত করুন।"
-    );
-
-}
-
-
-/* DEFAULT CATEGORY */
-showCategory(
-    "diamond",
-    document.querySelector(".category")
-);
-
 </script>
 
 </body>
