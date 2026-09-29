@@ -3,260 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top-Up BD</title>
+    <title>RED TOPUP & E-SPORTS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: #151922;
+            --card-border: #222a38;
+            --accent-color: #ff3366;
+            --secondary-color: #00e676;
+            --text-color: #ffffff;
+            --text-gray: #94a3b8;
+        }
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         body {
-            background-color: #121212;
-            color: #ffffff;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-        }
-        .container {
-            max-width: 480px;
-            width: 100%;
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-        h2 {
-            text-align: center;
-            color: #e50914;
-            margin-bottom: 20px;
-            font-size: 22px;
-        }
-        .section-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #ddd;
-        }
-        
-        /* Package Grid */
-        .packages {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .card {
-            background: #2a2a2a;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .card.active {
-            border-color: #e50914;
-            background: #331013;
-        }
-        .card .title {
-            font-size: 14px;
-            font-weight: bold;
-        }
-        .card .price {
-            font-size: 15px;
-            color: #e50914;
-            font-weight: bold;
-            margin-top: 5px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-bottom: 40px;
         }
 
-        /* Input Fields */
-        .input-group {
-            margin-bottom: 15px;
-        }
-        .input-group label {
-            display: block;
-            font-size: 13px;
-            margin-bottom: 5px;
-            color: #bbb;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #444;
-            background: #2a2a2a;
-            color: #fff;
-            font-size: 14px;
-        }
-        .input-group input:focus {
-            outline: none;
-            border-color: #e50914;
-        }
-
-        /* Payment Methods */
-        .payment-box {
-            background: #2a2a2a;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 10px;
+        header {
+            background: #151922;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--card-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .payment-info {
+
+        .brand-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .site-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .brand-text h1 {
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .brand-text p {
+            font-size: 10px;
+            color: var(--text-gray);
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* App Download Section */
+        .download-card {
+            background: linear-gradient(135deg, #1f2937, #111827);
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid var(--secondary-color);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--secondary-color);
+            color: #000;
+            width: 100%;
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        /* Matches */
+        .section-title {
+            font-size: 15px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 8px;
+        }
+
+        .tournament-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .match-info h3 {
             font-size: 14px;
+            color: #fff;
         }
-        .payment-info span {
-            display: block;
+
+        .match-info p {
             font-size: 12px;
-            color: #aaa;
+            color: var(--text-gray);
+            margin-top: 2px;
         }
-        .copy-btn {
-            background: #e50914;
-            border: none;
+
+        .join-btn {
+            background: var(--accent-color);
             color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Wallet Section */
+        .wallet-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 20px;
+            border: 1px solid var(--card-border);
+        }
+
+        .number-box {
+            background-color: #0b0e14;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0 15px 0;
+            border: 1px dashed var(--secondary-color);
+        }
+
+        .number-box span {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .copy-btn {
+            background-color: #222d3d;
+            color: #fff;
+            border: none;
             padding: 6px 12px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 12px;
         }
-        .copy-btn:active {
-            background: #b20710;
-        }
 
-        /* Confirm Button */
         .submit-btn {
             width: 100%;
-            background: #e50914;
-            color: white;
-            padding: 14px;
+            background: var(--secondary-color);
+            color: #000;
             border: none;
-            border-radius: 6px;
-            font-size: 16px;
+            padding: 12px;
+            border-radius: 8px;
             font-weight: bold;
+            font-size: 14px;
             cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: block;
             margin-top: 10px;
-        }
-        .submit-btn:hover {
-            background: #b20710;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Diamond Top-Up</h2>
+    <header>
+        <div class="brand-info">
+            <div class="site-logo"><i class="fa-solid fa-gamepad"></i></div>
+            <div class="brand-text">
+                <h1>RED TOPUP & E-SPORTS</h1>
+                <p>খেলুন এবং প্রতিদিন আয় করুন</p>
+            </div>
+        </div>
+    </header>
 
-    <!-- Select Package -->
-    <div class="section-title">প্যাকেজ নির্বাচন করুন:</div>
-    <div class="packages">
-        <div class="card" onclick="selectPackage(this, 23)">
-            <div class="title">25 Diamonds</div>
-            <div class="price">23৳</div>
+    <div class="container">
+
+        <!-- App Download Option -->
+        <div class="download-card">
+            <h3><i class="fa-brands fa-android" style="color: #00e676;"></i> অফিশিয়াল অ্যাপ ডাউনলোড</h3>
+            <p style="font-size: 12px; color: var(--text-gray); margin-top: 4px;">সহজ গেমিং ও ইনস্ট্যান্ট পেমেন্টের জন্য অ্যাপটি ডাউনলোড করুন।</p>
+            <!-- আপনার APK ফাইলের নাম app-release.apk হলে সেটি রুট ফোল্ডারে রেখে এখানে লিংক দিন -->
+            <a href="app-release.apk" download class="download-btn">
+                <i class="fa-solid fa-download"></i> অ্যাপ ইনস্টল করুন (.APK)
+            </a>
         </div>
-        <div class="card" onclick="selectPackage(this, 45)">
-            <div class="title">50 Diamonds</div>
-            <div class="price">45৳</div>
+
+        <!-- Tournaments -->
+        <h2 class="section-title">লাইভ টুর্নামেন্ট সমূহ</h2>
+
+        <div class="tournament-card">
+            <div class="match-info">
+                <h3>ফ্রি ফায়ার ১ বনাম ১ সোলো</h3>
+                <p>এন্ট্রি ফি: ২০ টাকা | পুরস্কার: ৩৫ টাকা</p>
+            </div>
+            <!-- জয়েন বাটনে ক্লিক করলে আপনার টেলিগ্রাম বা হোয়াটসঅ্যাপে নিয়ে যাবে -->
+            <a href="https://t.me/your_username" target="_blank" class="join-btn">জয়েন করুন</a>
         </div>
-        <div class="card" onclick="selectPackage(this, 80)">
-            <div class="title">115 Diamonds</div>
-            <div class="price">80৳</div>
+
+        <div class="tournament-card">
+            <div class="match-info">
+                <h3>ফ্রি ফায়ার ৪ বনাম ৪ সিএস ম্যাচ</h3>
+                <p>এন্ট্রি ফি: ৫০ টাকা | পুরস্কার: ৯০ টাকা</p>
+            </div>
+            <a href="https://t.me/your_username" target="_blank" class="join-btn">জয়েন করুন</a>
         </div>
-        <div class="card" onclick="selectPackage(this, 155)">
-            <div class="title">240 Diamonds</div>
-            <div class="price">155৳</div>
+
+        <!-- Deposit & Verification Section -->
+        <div class="wallet-card">
+            <h2 class="section-title">ডিপোজিট ও টাকা জমা</h2>
+            <p style="font-size: 12px; color: var(--text-gray);">নিচের নম্বরে বিকাশ/নগদ থেকে সেন্ড মানি করুন:</p>
+            
+            <div class="number-box">
+                <span id="sendMoneyNumber">01962575788</span>
+                <button class="copy-btn" onclick="copyNumber()">কপি করুন</button>
+            </div>
+
+            <p style="font-size: 12px; color: var(--text-gray); margin-bottom: 10px;">
+                টাকা পাঠানোর পর নিচের বাটনে ক্লিক করে ট্রানজেকশন তথ্য জমা দিন।
+            </p>
+
+            <!-- গুগল ফর্মের লিংক এখানে বসিয়ে দিন -->
+            <a href="https://forms.google.com" target="_blank" class="submit-btn">
+                <i class="fa-solid fa-paper-plane"></i> পেমেন্ট প্রুফ জমা দিন (Google Form)
+            </a>
         </div>
-        <div class="card" onclick="selectPackage(this, 235)">
-            <div class="title">355 Diamonds</div>
-            <div class="price">235৳</div>
-        </div>
-        <div class="card" onclick="selectPackage(this, 390)">
-            <div class="title">610 Diamonds</div>
-            <div class="price">390৳</div>
-        </div>
+
     </div>
 
-    <!-- Player UID Input -->
-    <div class="input-group">
-        <label for="uid">Player UID / ID:</label>
-        <input type="number" id="uid" placeholder="আপনার Player UID দিন">
-    </div>
-
-    <!-- Payment Methods -->
-    <div class="section-title">পেমেন্ট মেথড (Send Money):</div>
-    
-    <div class="payment-box">
-        <div class="payment-info">
-            <strong>bKash: 01962575788</strong>
-            <span>Send Money</span>
-        </div>
-        <button class="copy-btn" onclick="copyNumber('01962575788')">Copy Number</button>
-    </div>
-
-    <div class="payment-box">
-        <div class="payment-info">
-            <strong>Rocket: 01992849511</strong>
-            <span>Send Money</span>
-        </div>
-        <button class="copy-btn" onclick="copyNumber('01992849511')">Copy Number</button>
-    </div>
-
-    <!-- Transaction ID Input -->
-    <div class="input-group" style="margin-top: 15px;">
-        <label for="trxId">Transaction ID:</label>
-        <input type="text" id="trxId" placeholder="Transaction ID লিখুন">
-    </div>
-
-    <!-- Order Button -->
-    <button class="submit-btn" onclick="confirmOrder()">CONFIRM ORDER</button>
-</div>
-
-<script>
-    let selectedPrice = 0;
-
-    function selectPackage(element, price) {
-        let cards = document.querySelectorAll('.card');
-        cards.forEach(card => card.classList.remove('active'));
-        element.classList.add('active');
-        selectedPrice = price;
-    }
-
-    function copyNumber(number) {
-        navigator.clipboard.writeText(number);
-        alert("নম্বর কপি হয়েছে: " + number);
-    }
-
-    function confirmOrder() {
-        let uid = document.getElementById('uid').value;
-        let trxId = document.getElementById('trxId').value.trim();
-
-        if (selectedPrice === 0) {
-            alert("দয়া করে একটি প্যাকেজ সিলেক্ট করুন!");
-            return;
+    <script>
+        function copyNumber() {
+            const number = document.getElementById("sendMoneyNumber").innerText;
+            navigator.clipboard.writeText(number);
+            alert("নম্বর কপি করা হয়েছে: " + number);
         }
-
-        if (uid === "") {
-            alert("দয়া করে আপনার Player UID দিন!");
-            return;
-        }
-
-        if (trxId === "") {
-            alert("দয়া করে Transaction ID দিন!");
-            return;
-        }
-
-        // ট্রানজেকশন আইডি ভ্যালিডেশন (এখানে সঠিক ট্রানজেকশন আইডি সেট করা যাবে)
-        // উদাহরণ হিসেবে একটি ভ্যালিড আইডি দেওয়া হলো
-        let validTrxIds = ["8N7A6D5C4B", "9K8J7H6G5F"]; 
-
-        if (validTrxIds.includes(trxId)) {
-            alert("অর্ডার সফল হয়েছে! আপনার একাউন্টে ডায়মন্ড যোগ করা হবে।");
-        } else {
-            alert("রং! ভুল ট্রানজেকশন আইডি মামা");
-        }
-    }
-</script>
-
+    </script>
 </body>
 </html>
