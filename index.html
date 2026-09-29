@@ -75,32 +75,6 @@
             padding: 15px;
         }
 
-        /* App Download Section */
-        .download-card {
-            background: linear-gradient(135deg, #1f2937, #111827);
-            padding: 16px;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 20px;
-            border: 1px solid var(--secondary-color);
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: var(--secondary-color);
-            color: #000;
-            width: 100%;
-            padding: 12px;
-            font-weight: bold;
-            border-radius: 8px;
-            text-decoration: none;
-            margin-top: 10px;
-        }
-
-        /* Matches */
         .section-title {
             font-size: 15px;
             margin-bottom: 12px;
@@ -108,6 +82,7 @@
             padding-left: 8px;
         }
 
+        /* Tournament List */
         .tournament-card {
             background-color: var(--card-bg);
             border-radius: 10px;
@@ -134,46 +109,73 @@
             background: var(--accent-color);
             color: white;
             padding: 8px 14px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        /* Wallet Section */
-        .wallet-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 16px;
-            margin-top: 20px;
-            border: 1px solid var(--card-border);
-        }
-
-        .number-box {
-            background-color: #0b0e14;
-            padding: 10px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 10px 0 15px 0;
-            border: 1px dashed var(--secondary-color);
-        }
-
-        .number-box span {
-            font-size: 16px;
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-
-        .copy-btn {
-            background-color: #222d3d;
-            color: #fff;
             border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
+            border-radius: 6px;
+            font-weight: bold;
             font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* Popup Modal Style */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            color: var(--text-gray);
+            cursor: pointer;
+        }
+
+        .modal h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-gray);
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--card-border);
+            background-color: #0b0e14;
+            color: #fff;
+            font-size: 13px;
+            outline: none;
         }
 
         .submit-btn {
@@ -186,9 +188,6 @@
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            display: block;
             margin-top: 10px;
         }
     </style>
@@ -206,18 +205,6 @@
     </header>
 
     <div class="container">
-
-        <!-- App Download Option -->
-        <div class="download-card">
-            <h3><i class="fa-brands fa-android" style="color: #00e676;"></i> অফিশিয়াল অ্যাপ ডাউনলোড</h3>
-            <p style="font-size: 12px; color: var(--text-gray); margin-top: 4px;">সহজ গেমিং ও ইনস্ট্যান্ট পেমেন্টের জন্য অ্যাপটি ডাউনলোড করুন।</p>
-            <!-- আপনার APK ফাইলের নাম app-release.apk হলে সেটি রুট ফোল্ডারে রেখে এখানে লিংক দিন -->
-            <a href="app-release.apk" download class="download-btn">
-                <i class="fa-solid fa-download"></i> অ্যাপ ইনস্টল করুন (.APK)
-            </a>
-        </div>
-
-        <!-- Tournaments -->
         <h2 class="section-title">লাইভ টুর্নামেন্ট সমূহ</h2>
 
         <div class="tournament-card">
@@ -225,8 +212,7 @@
                 <h3>ফ্রি ফায়ার ১ বনাম ১ সোলো</h3>
                 <p>এন্ট্রি ফি: ২০ টাকা | পুরস্কার: ৩৫ টাকা</p>
             </div>
-            <!-- জয়েন বাটনে ক্লিক করলে আপনার টেলিগ্রাম বা হোয়াটসঅ্যাপে নিয়ে যাবে -->
-            <a href="https://t.me/your_username" target="_blank" class="join-btn">জয়েন করুন</a>
+            <button class="join-btn" onclick="openMatchModal('ফ্রি ফায়ার ১ বনাম ১ সোলো')">জয়েন করুন</button>
         </div>
 
         <div class="tournament-card">
@@ -234,36 +220,50 @@
                 <h3>ফ্রি ফায়ার ৪ বনাম ৪ সিএস ম্যাচ</h3>
                 <p>এন্ট্রি ফি: ৫০ টাকা | পুরস্কার: ৯০ টাকা</p>
             </div>
-            <a href="https://t.me/your_username" target="_blank" class="join-btn">জয়েন করুন</a>
+            <button class="join-btn" onclick="openMatchModal('ফ্রি ফায়ার ৪ বনাম ৪ সিএস ম্যাচ')">জয়েন করুন</button>
         </div>
+    </div>
 
-        <!-- Deposit & Verification Section -->
-        <div class="wallet-card">
-            <h2 class="section-title">ডিপোজিট ও টাকা জমা</h2>
-            <p style="font-size: 12px; color: var(--text-gray);">নিচের নম্বরে বিকাশ/নগদ থেকে সেন্ড মানি করুন:</p>
+    <!-- Join Match Pop-Up Modal -->
+    <div id="joinModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeMatchModal()">&times;</span>
+            <h3 id="modalMatchTitle">ম্যাচ জয়েন ফর্ম</h3>
             
-            <div class="number-box">
-                <span id="sendMoneyNumber">01962575788</span>
-                <button class="copy-btn" onclick="copyNumber()">কপি করুন</button>
-            </div>
+            <!-- Formspree Endpoint link: আপনার Formspree ID থাকলে বসিয়ে দিন -->
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+                <input type="hidden" id="matchNameInput" name="Match_Name" value="">
+                
+                <div class="input-group">
+                    <label>ইন-গেম নাম (In-Game Name)</label>
+                    <input type="text" name="Player_Name" placeholder="যেমন: RED_GAMER" required>
+                </div>
 
-            <p style="font-size: 12px; color: var(--text-gray); margin-bottom: 10px;">
-                টাকা পাঠানোর পর নিচের বাটনে ক্লিক করে ট্রানজেকশন তথ্য জমা দিন।
-            </p>
+                <div class="input-group">
+                    <label>প্লেয়ার ইউআইডি (Player UID / Number)</label>
+                    <input type="text" name="Player_UID" placeholder="যেমন: 123456789" required>
+                </div>
 
-            <!-- গুগল ফর্মের লিংক এখানে বসিয়ে দিন -->
-            <a href="https://forms.google.com" target="_blank" class="submit-btn">
-                <i class="fa-solid fa-paper-plane"></i> পেমেন্ট প্রুফ জমা দিন (Google Form)
-            </a>
+                <div class="input-group">
+                    <label>পেমেন্ট ট্রানজেকশন আইডি (TrxID)</label>
+                    <input type="text" name="TrxID" placeholder="ফি পাঠানোর TrxID দিন" required>
+                </div>
+
+                <button type="submit" class="submit-btn">কনফার্ম জয়েন করুন</button>
+            </form>
         </div>
-
     </div>
 
     <script>
-        function copyNumber() {
-            const number = document.getElementById("sendMoneyNumber").innerText;
-            navigator.clipboard.writeText(number);
-            alert("নম্বর কপি করা হয়েছে: " + number);
+        function openMatchModal(matchTitle) {
+            document.getElementById('modalMatchTitle').innerText = matchTitle;
+            document.getElementById('matchNameInput').value = matchTitle;
+            document.getElementById('joinModal').style.style.display = 'none'; // reset just in case
+            document.getElementById('joinModal').style.display = 'flex';
+        }
+
+        function closeMatchModal() {
+            document.getElementById('joinModal').style.display = 'none';
         }
     </script>
 </body>
